@@ -15,13 +15,16 @@ public:
         if(root==NULL){
             return ;
         }
-        solve(root->left,cnt ,ans ,k);
+         solve(root->left,cnt ,ans ,k);
+       
+        
         cnt++;
         if(cnt==k){
             ans=root->val;
             return ;
         }
         solve(root->right,cnt ,ans ,k);
+        
 
     }
     int kthSmallest(TreeNode* root, int k) {
