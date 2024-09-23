@@ -1,29 +1,34 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        int i = 0;
-        int n = s.length();
-        string ans;
+        string ans ,k;
+        stack<string>st;
+        for(auto c :s){
+            if(c==' '  && !k.empty()){
+                st.push(k);
+                k.clear();
+            }
+             else if(c==' '){
+                continue;
+            }
+            else{
+                k+=c;
+            }
+        }
+             if (!k.empty()) {
+            st.push(k);
+        }
 
-        while (i < n) {
-            while (i < n && s[i] == ' ') {
-                i++; // skip spaces
+        
+        while(!st.empty()){
+            string m=st.top();
+            st.pop();
+            ans+=m;
+            if(!st.empty()){
+                ans+=' ';
             }
-            if (i >= n) break;
-            int j = i;
-            while (j < n && s[j] != ' ') {
-                j++; // find the end of the word
-            }
-            string word = s.substr(i, j - i); // extract the word
-            if (ans.empty()) {
-                ans = word; // if it's the first word, no need to add space
-            } else {
-                ans = word + " " + ans; // prepend the word
-            }
-            i = j; // move to the next word
         }
         return ans;
-    }
         
-    
+    }
 };
